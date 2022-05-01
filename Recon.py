@@ -40,14 +40,14 @@ class Recon:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 if s.type == socket.SOCK_STREAM:
                     if s.connect_ex((self.get_host(), self.get_port())) == 0:
-                        print(f"{self.get_port()}/TCP\tOPEN\t")
+                        print(f"{self.get_port()}/TCP\tOPEN\t{socket.getservbyport(self.get_port())}")
                         self.set_is_open(True)
                     else:
                         print(f"{self.get_port()}/TCP\tCLOSED")
                         self.set_is_open(None)
                 elif s.type == socket.SOCK_DGRAM:
                     if s.connect_ex((self.get_host(), self.get_port())) == 0:
-                        print(f"{self.get_port()}/UDP\tOPEN")
+                        print(f"{self.get_port()}/UDP\tOPEN\t{socket.getservbyport(self.get_port())}")
                         self.set_is_open(True)
                     else:
                         print(f"{self.get_port()}/TCP\tCLOSED")

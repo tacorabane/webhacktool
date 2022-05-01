@@ -10,6 +10,10 @@ def start(args):
         print("Start...")
         r = Recon.Recon(args.url, args.port)
         r.scan()
+        if r.get_is_open():
+            # Starting the scanning of the web page
+        else:
+            print(f"Nothing to do with {args.url}:{args.port}")
 
 
 def run():
