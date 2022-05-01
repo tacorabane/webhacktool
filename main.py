@@ -1,9 +1,5 @@
 import sys
-import socket
 import argparse
-
-HOST = "192.168.119.141"
-PORT = 3000
 
 
 def start(args):
@@ -24,7 +20,7 @@ def run():
                         help='Specify the port of the target host. 80 by default')
     args = parser.parse_args()
     sys.exit(start(args))
-    
+
 
 if __name__ == '__main__':
     sys.exit()
