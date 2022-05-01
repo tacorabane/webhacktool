@@ -1,5 +1,6 @@
 import sys
 import argparse
+import Recon
 
 
 def start(args):
@@ -7,6 +8,8 @@ def start(args):
         raise Exception('Issue with args !')
     else:
         print("Start...")
+        r = Recon.Recon(args.host, args.port)
+        r.scan()
 
 
 def run():
@@ -19,6 +22,8 @@ def run():
                         default=80,
                         help='Specify the port of the target host. 80 by default')
     args = parser.parse_args()
+    if args.port is None:
+        raise Exception('You should specify a target IP address or URL')
     sys.exit(start(args))
 
 
