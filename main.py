@@ -1,9 +1,6 @@
 import sys
-import socket
 import argparse
-
-HOST = "192.168.119.141"
-PORT = 3000
+import Recon
 
 
 def start(args):
@@ -11,11 +8,13 @@ def start(args):
         raise Exception('Issue with args !')
     else:
         print("Start...")
+        r = Recon.Recon(args.url, args.port)
+        r.scan()
 
 
 def run():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-h', '--host',
+    parser.add_argument('-u', '--url',
                         type=str,
                         help='Specify the target host')
     parser.add_argument('-p', '--port',
@@ -23,8 +22,10 @@ def run():
                         default=80,
                         help='Specify the port of the target host. 80 by default')
     args = parser.parse_args()
+    if args.url is None:
+        raise Exception('You should specify a target IP address or URL')
     sys.exit(start(args))
-    
+
 
 if __name__ == '__main__':
-    sys.exit()
+    sys.exit(run())
